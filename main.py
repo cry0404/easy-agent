@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import sys
 import argparse
 from google.genai import types
-
+from system_prompt import system_prompt
 load_dotenv()
 API_KEY = os.getenv("GEMINI_API_KEY")
 
@@ -30,7 +30,10 @@ messages = [
 client = genai.Client(api_key=API_KEY)
 response = client.models.generate_content(
     model="gemini-2.0-flash-001",
-    contents= messages
+    contents= messages,
+    config=types.GenerateContentConfig(
+      system_instruction=system_prompt
+    )
 )
 prompt_token_count = response.usage_metadata.prompt_token_count
 candidates_token_count = response.usage_metadata.candidates_token_count
