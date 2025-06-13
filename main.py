@@ -4,7 +4,7 @@ import sys
 import argparse
 from google.genai import types
 from system_prompt import system_prompt
-from declare_function import schema_get_files_info
+from declare_function import *
 load_dotenv()
 API_KEY = os.getenv("GEMINI_API_KEY")
 
@@ -30,6 +30,9 @@ messages = [
 available_functions = types.Tool(
   function_declarations = [
     schema_get_files_info,
+    schema_get_file_content,
+    schema_write_file,
+    schema_run_python_file,
   ]
 )
 client = genai.Client(api_key=API_KEY)
