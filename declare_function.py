@@ -23,8 +23,8 @@ schema_get_files_info = types.FunctionDeclaration(
     )
 )
 
-schema_get_file_content = types.FunctionDeclaration(
-    name = "get_file_content",
+schema_get_files_content = types.FunctionDeclaration(
+    name = "get_files_content",
     description = "Get the content of the file in the working directory",
     parameters = types.Schema(
         type = types.Type.OBJECT,
